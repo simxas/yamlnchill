@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Homelab Cluster - YAMLNCHILL</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="container">
+        <!-- Header Navigation -->
+        <header class="header">
+            <div class="logo">
+                <span class="blink">&gt;</span> YAMLNCHILL.DEV
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-btn">HOME</a>
+                <a href="devops.html" class="nav-btn active">DEVOPS</a>
+                <a href="gamedev.html" class="nav-btn">GAMEDEV</a>
+                <a href="learning.html" class="nav-btn">LEARNING</a>
+                <a href="contact.html" class="nav-btn">CONTACT</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-title">PROJECT_DETAILS.MD</span>
+                    <div class="terminal-buttons">
+                        <span class="btn-close"></span>
+                        <span class="btn-minimize"></span>
+                        <span class="btn-maximize"></span>
+                    </div>
+                </div>
+                <div class="terminal-content blog-post">
+                    <div class="post-header">
+                        <h1 class="post-title">KUBERNETES HOMELAB CLUSTER</h1>
+                        <div class="post-meta">
+                            <span class="prompt">&gt;</span> PROJECT TYPE: DevOps Infrastructure |
+                            STATUS: In Progress |
+                            TECH: Kubernetes, GitOps, Prometheus, Flux
+                        </div>
+                    </div>
+
+                    <div class="post-content">
+                        <h2>THE QUEST BEGINS</h2>
+                        <p>
+                            I've always wanted to run my own Kubernetes cluster at home, not just for learning
+                            but to actually host real services. This project is about building a production-grade
+                            K8s cluster using Raspberry Pi nodes - because why not make it challenging and fun?
+                        </p>
+
+                        <div class="divider">═══════════════════════════════════════</div>
+
+                        <h3>WHAT I'M BUILDING</h3>
+                        <p>A multi-node Kubernetes cluster with:</p>
+                        <ul>
+                            <li>3x Raspberry Pi 4 (8GB) as worker nodes</li>
+                            <li>1x Raspberry Pi 4 (4GB) as control plane</li>
+                            <li>GitOps workflow using Flux CD</li>
+                            <li>Full observability stack (Prometheus, Grafana, Loki)</li>
+                            <li>Automated certificate management with cert-manager</li>
+                            <li>Ingress controller for external access</li>
+                            <li>Persistent storage using Longhorn</li>
+                        </ul>
+
+                        <div class="divider">═══════════════════════════════════════</div>
+
+                        <h3>THE CHALLENGES</h3>
+
+                        <h3>Challenge #1: ARM Architecture Compatibility</h3>
+                        <p>
+                            Running K8s on ARM wasn't as smooth as I thought. Many container images don't support
+                            ARM64 out of the box. I had to either find multi-arch images or build my own.
+                        </p>
+                        <p><strong>Solution:</strong> Created a custom Docker registry and started building ARM-compatible
+                            images. Also learned to use buildx for multi-platform builds. This actually taught me
+                            a lot about container internals!</p>
+
+                        <h3>Challenge #2: Power Management</h3>
+                        <p>
+                            Four Raspberry Pis running 24/7 meant dealing with power supply issues. The cheap USB
+                            power supplies I initially used couldn't handle the load, causing random reboots.
+                        </p>
+                        <p><strong>Solution:</strong> Invested in a proper PoE (Power over Ethernet) HAT setup.
+                            Now power and networking come through a single cable per node. Much cleaner and more
+                            reliable!</p>
+
+                        <h3>Challenge #3: Storage Persistence</h3>
+                        <p>
+                            SD cards are not ideal for production workloads. I experienced corruption and slow I/O
+                            that made databases nearly unusable.
+                        </p>
+                        <p><strong>Solution:</strong> Boot from SD cards but use USB 3.0 SSDs for all persistent
+                            storage. Implemented Longhorn for distributed storage across nodes. Performance
+                            improved dramatically!</p>
+
+                        <div class="divider">═══════════════════════════════════════</div>
+
+                        <h3>KEY LEARNINGS</h3>
+                        <ul>
+                            <li><strong>GitOps is amazing:</strong> Having all configs in Git and auto-synced to the cluster
+                                is pure magic. I can roll back any change with a git revert.</li>
+                            <li><strong>Observability matters:</strong> You can't manage what you can't see. Setting up
+                                Prometheus and Grafana early saved me countless hours of debugging.</li>
+                            <li><strong>Start small, scale smart:</strong> I tried to do everything at once initially
+                                and got overwhelmed. Breaking it into smaller milestones made it manageable.</li>
+                            <li><strong>Documentation as you go:</strong> Future me is grateful that I documented
+                                decisions and configurations. I've already forgotten half the things I learned!</li>
+                        </ul>
+
+                        <div class="divider">═══════════════════════════════════════</div>
+
+                        <h3>WHAT'S NEXT</h3>
+                        <p>Current roadmap includes:</p>
+                        <ul>
+                            <li>Implementing backup and disaster recovery</li>
+                            <li>Adding more services (Home Assistant, Nextcloud, etc.)</li>
+                            <li>Experimenting with service mesh (Istio or Linkerd)</li>
+                            <li>Setting up CI/CD pipelines for my other projects</li>
+                            <li>Maybe adding more nodes because... why not?</li>
+                        </ul>
+
+                        <div class="stats-box">
+                            <div class="stat">
+                                <span class="stat-label">LINES OF YAML:</span>
+                                <span class="stat-value">TOO MANY TO COUNT</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">COFFEE CONSUMED:</span>
+                                <span class="stat-value">LEGENDARY</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">FUN LEVEL:</span>
+                                <span class="stat-value">MAXIMUM</span>
+                            </div>
+                        </ul>
+
+                        <div class="divider">═══════════════════════════════════════</div>
+
+                        <h3>TECH STACK</h3>
+                        <div class="project-tags">
+                            <span class="tag">KUBERNETES</span>
+                            <span class="tag">RASPBERRY PI</span>
+                            <span class="tag">FLUX CD</span>
+                            <span class="tag">GITOPS</span>
+                            <span class="tag">PROMETHEUS</span>
+                            <span class="tag">GRAFANA</span>
+                            <span class="tag">LONGHORN</span>
+                            <span class="tag">CERT-MANAGER</span>
+                        </div>
+
+                        <p style="margin-top: 30px;">
+                            <span class="prompt">&gt;</span> This project taught me that sometimes the journey
+                            of building something is more valuable than the destination. Every challenge was an
+                            opportunity to learn something new and have fun doing it.
+                        </p>
+
+                        <a href="devops.html" class="back-button">&lt;&lt; BACK TO PROJECTS</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 YAMLNCHILL | CRAFTED WITH <span class="heart blink">♥</span> DURING RECOVERY MODE</p>
+        </footer>
+    </div>
+</body>
+</html>
